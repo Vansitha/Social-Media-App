@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 import { db, auth } from "../../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import PostCard from "./PostCard";
 
 export function Post(props) {
   const { post } = props;
@@ -60,7 +61,7 @@ export function Post(props) {
       if (user) {
         setLikes((prev) =>
           setLikes(
-            (prev) => prev && prev.filer((like) => like.likeId !== likeId)
+            (prev) => prev && prev.filter((like) => like.likeId !== likeId)
           )
         );
       }
@@ -76,19 +77,13 @@ export function Post(props) {
   }, []);
 
   return (
-    <div>
-      <div className='title'>{post.title}</div>
-      <div className='body'>
-        <p>{post.description}</p>
-      </div>
-      <div className='footer'>
-        <p>@{post.username}</p>
-      </div>
-      <button onClick={hasUserLiked ? removeLike : addLike}>
-        {" "}
-        {hasUserLiked ? <>&#128078;</> : <>&#128077; </>}{" "}
-      </button>
-      {likes && <p>Likes: {likes?.length}</p>}
-    </div>
+    <PostCard
+      user={post.username}
+      title={post.title}
+      desc={post.description}
+      likes={likes?.length}
+      isLiked={hasUserLiked}
+      handleClick={hasUserLiked ? removeLike : addLike}
+    />
   );
 }

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
-import { Avatar, Button, Container, Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import styles from "./Navbar.module.css";
 import BasicMenu from "./Menu";
 
@@ -23,11 +23,7 @@ export default function Navbar() {
       my={5}
       className={styles.container}
     >
-      <Stack
-        direction='row'
-        spacing={4}
-        mt={1}
-      >
+      <Stack direction='row' spacing={4} mt={1}>
         <Link to='/'>
           <Button variant='outlined' size='large'>
             Home
