@@ -6,6 +6,15 @@ import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  Input,
+  Textarea,
+  Typography,
+} from "@mui/joy";
 
 export default function CreateForm() {
   const [user] = useAuthState(auth);
@@ -39,12 +48,39 @@ export default function CreateForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onCreatePost)}>
-      <input placeholder='title' {...register("title")} />
-      <p style={{ color: "red" }}>{errors.title?.message}</p>
-      <textarea placeholder='description' {...register("description")} />
-      <p style={{ color: "red" }}>{errors.description?.message}</p>
-      <input type='submit' />
-    </form>
+    <Container maxWidth='md' sx={{ mt: 5 }}>
+      <form onSubmit={handleSubmit(onCreatePost)}>
+        <Input
+          sx={{ mb: 1}}
+          size='lg'
+          placeholder='Post Title'
+          color='neutral'
+          variant='soft'
+          {...register("title")}
+        />
+        <Typography>{errors.title?.message}</Typography>
+        <Textarea
+          sx={{ mt: 3, mb: 1}}
+          placeholder='Post content...'
+          minRows={10}
+          size='lg'
+          color='neutral'
+          variant='soft'
+          {...register("description")}
+        />
+        <Typography>{errors.description?.message}</Typography>
+        <Button
+          color='danger'
+          size='lg'
+          type='submit'
+          style={{
+            margin: "2rem 0",
+            minWidth: "150px",
+          }}
+        >
+          Post
+        </Button>
+      </form>
+    </Container>
   );
 }
