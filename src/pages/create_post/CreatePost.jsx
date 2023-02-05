@@ -6,15 +6,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Input,
-  Textarea,
-  Typography,
-} from "@mui/joy";
+import { Button, Container, Input, Textarea, Typography } from "@mui/joy";
 
 export default function CreateForm() {
   const [user] = useAuthState(auth);
@@ -51,7 +43,7 @@ export default function CreateForm() {
     <Container maxWidth='md' sx={{ mt: 5 }}>
       <form onSubmit={handleSubmit(onCreatePost)}>
         <Input
-          sx={{ mb: 1}}
+          sx={{ mb: 1 }}
           size='lg'
           placeholder='Post Title'
           color='neutral'
@@ -60,7 +52,7 @@ export default function CreateForm() {
         />
         <Typography>{errors.title?.message}</Typography>
         <Textarea
-          sx={{ mt: 3, mb: 1}}
+          sx={{ mt: 3, mb: 1 }}
           placeholder='Post content...'
           minRows={10}
           size='lg'

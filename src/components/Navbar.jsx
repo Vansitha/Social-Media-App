@@ -4,7 +4,7 @@ import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import BasicMenu from "./Menu";
-import { Button, Grid, Stack } from "@mui/joy";
+import { Button, Container, Stack } from "@mui/joy";
 import ModeToggler from "./ModeToggler";
 import HomeIcon from "@mui/icons-material/Home";
 
@@ -16,14 +16,14 @@ export default function Navbar() {
   }
 
   return (
-    <Grid
-      container
-      director='row'
-      justifyContent='space-between'
-      alignItems='flex-end'
-      my={3}
-      maxWidth={1280}
-      mx='auto'
+    <Container
+      maxWidth='lg'
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        marginTop: "15px",
+        marginBottom: "15px",
+      }}
     >
       <Stack direction='row' spacing={2} mt={1}>
         <ModeToggler />
@@ -47,6 +47,6 @@ export default function Navbar() {
         )}
         {user && <BasicMenu user={user} logout={signUserOut} />}
       </Stack>
-    </Grid>
+    </Container>
   );
 }
