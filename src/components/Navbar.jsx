@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
+import { Avatar, Button, Container, Stack } from "@mui/material";
+import styles from "./Navbar.module.css";
+import BasicMenu from "./Menu";
 
 export default function Navbar() {
   const [user] = useAuthState(auth);
@@ -12,30 +15,42 @@ export default function Navbar() {
   }
 
   return (
-    <div>
-      <Link to='/'>Home</Link>
-      {!user ? (
-        <Link to='/login'>Login</Link>
-      ) : (
-        <Link to='/createpost'>Create Post</Link>
-      )}
-
-      <div>
-        {user && (
-          <>
-            <p>{user?.displayName || ""}</p>
-            <img
-              alt='user profile img'
-              src={user?.photoURL || ""}
-              width='100'
-              height='100'
-            />
-            <div>
-              <button onClick={signUserOut}>Logout</button>
-            </div>
-          </>
+    <Stack
+      direction='row'
+      spacing={5}
+      justifyContent='space-between'
+      alignItems='flex-start'
+      my={5}
+      className={styles.container}
+    >
+      <Stack
+        direction='row'
+        spacing={4}
+        mt={1}
+      >
+        <Link to='/'>
+          <Button variant='outlined' size='large'>
+            Home
+          </Button>
+        </Link>
+        {!user ? (
+          <Link to='/login'>
+            <Button variant='outlined' size='large'>
+              Login
+            </Button>
+          </Link>
+        ) : (
+          <Link to='/createpost'>
+            <Button variant='outlined' size='large'>
+              Create Post
+            </Button>
+          </Link>
         )}
-      </div>
-    </div>
+      </Stack>
+
+      <Stack direction='row' spacing={5}>
+        {user && <BasicMenu user={user} logout={signUserOut} />}
+      </Stack>
+    </Stack>
   );
 }

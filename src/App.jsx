@@ -5,10 +5,11 @@ import Main from "./pages/main/Main";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import CreatePost from "./pages/create_post/CreatePost";
+import { Container } from "@mui/material";
 
 function App() {
   return (
-    <div className='App'>
+    <Container maxWidth='lg'>
       <Router>
         <Navbar />
         <Routes>
@@ -17,7 +18,7 @@ function App() {
           <Route path='/createpost' element={<CreatePost />}></Route>
         </Routes>
       </Router>
-    </div>
+    </Container>
   );
 }
 
