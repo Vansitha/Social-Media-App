@@ -46,11 +46,7 @@ export default function PostCard(props) {
           aria-label='Explore Bahamas Islands'
           sx={{ ml: "auto", borderRadius: "50%" }}
         >
-          {props.isLiked ? (
-            <FavoriteIcon style={{ color: "red" }} />
-          ) : (
-            <FavoriteBorderIcon style={{ color: "red" }} />
-          )}
+          {props.isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </Button>
       </Box>
     </Card>

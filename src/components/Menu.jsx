@@ -1,8 +1,8 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import { Avatar } from "@mui/material";
+import Menu from "@mui/joy/Menu";
+import MenuItem from "@mui/joy/MenuItem";
+import { Avatar } from "@mui/joy";
+import PersonIcon from "@mui/icons-material/Person";
 
 export default function BasicMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -17,26 +17,19 @@ export default function BasicMenu(props) {
   return (
     <div>
       <Avatar
-        id='basic-button'
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup='true'
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
         alt='user profile img'
-        src={props.user?.photoURL || ""}
-        sx={{ width: 60, height: 60 }}
-      />
+        src={props.user?.photoURL || <PersonIcon />}
+        size='lg'
+        onClick={handleClick}
+      ></Avatar>
       <Menu
         id='basic-menu'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
+        aria-labelledby='basic-demo-button'
       >
-        {/* TODO: Need to implement profile section */}
-        {/* <MenuItem onClick={props.profile}>Profile</MenuItem> */}
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={props.logout}>Logout</MenuItem>
       </Menu>
     </div>

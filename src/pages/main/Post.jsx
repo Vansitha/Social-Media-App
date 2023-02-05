@@ -72,9 +72,9 @@ export function Post(props) {
 
   const hasUserLiked = likes?.find((like) => like.userId === user?.uid);
 
-  useEffect(() => {
-    getLikes();
-  }, []);
+  // useEffect(() => {
+  //   getLikes();
+  // }, []);
 
   return (
     <PostCard

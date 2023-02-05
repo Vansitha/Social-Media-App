@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
-import { Button, Stack } from "@mui/material";
-import styles from "./Navbar.module.css";
 import BasicMenu from "./Menu";
+import { Button, Grid, Stack } from "@mui/joy";
+import ModeToggler from "./ModeToggler";
+import HomeIcon from "@mui/icons-material/Home";
 
 export default function Navbar() {
   const [user] = useAuthState(auth);
@@ -15,38 +16,37 @@ export default function Navbar() {
   }
 
   return (
-    <Stack
-      direction='row'
-      spacing={5}
+    <Grid
+      container
+      director='row'
       justifyContent='space-between'
-      alignItems='flex-start'
-      my={5}
-      className={styles.container}
+      alignItems='flex-end'
+      my={3}
+      maxWidth={1280}
+      mx='auto'
     >
-      <Stack direction='row' spacing={4} mt={1}>
+      <Stack direction='row' spacing={2} mt={1}>
+        <ModeToggler />
         <Link to='/'>
-          <Button variant='outlined' size='large'>
-            Home
+          <Button color='neutral' size='md' variant='soft'>
+            <HomeIcon />
           </Button>
         </Link>
+      </Stack>
+      <Stack direction='row' spacing={2} sx={{ alignItems: "end" }}>
         {!user ? (
           <Link to='/login'>
-            <Button variant='outlined' size='large'>
-              Login
-            </Button>
+            <Button variant='solid'>Login</Button>
           </Link>
         ) : (
           <Link to='/createpost'>
-            <Button variant='outlined' size='large'>
-              Create Post
+            <Button variant='solid' color='danger' size='md'>
+              Create
             </Button>
           </Link>
         )}
-      </Stack>
-
-      <Stack direction='row' spacing={5}>
         {user && <BasicMenu user={user} logout={signUserOut} />}
       </Stack>
-    </Stack>
+    </Grid>
   );
 }

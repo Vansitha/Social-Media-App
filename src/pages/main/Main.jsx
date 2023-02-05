@@ -5,29 +5,43 @@ import { Post } from "./Post";
 import { Grid } from "@mui/joy";
 
 export default function Main() {
-  const [postsList, setPostsList] = useState(null);
-  const postRef = collection(db, "posts");
+  // const [postsList, setPostsList] = useState(null);
+  // const postRef = collection(db, "posts");
 
-  async function getPosts() {
-    const data = await getDocs(postRef);
-    setPostsList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  }
+  // // async function getPosts() {
+  // //   const data = await getDocs(postRef);
+  // //   setPostsList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  // // }
 
-  useEffect(() => {
-    getPosts();
-  }, []);
+  // // useEffect(() => {
+  // //   getPosts();
+  // // }, []);
+  const post = {
+    id: "fdfdfd",
+    title: "This is the title",
+    description: "This is the post description",
+    username: "Vansitha",
+  };
 
   return (
     <Grid
       container
-      spacing={2}
-      direction='column'
-      justifyContent='space-evenly'
-      alignItems='center'
+      gap={2}
+      sx={{ justifyContent: "center", alignItems: "center" }}
+      maxWidth={1280}
+      mx='auto'
     >
-      {postsList?.map((post) => {
-        return <Post post={post} />;
-      })}
+      {/* {postsList?.map((post, index) => {
+        return <Post post={post} key={index} />;
+      })} */}
+      <Post post={post} />
+      <Post post={post} />
+      <Post post={post} />
+      <Post post={post} />
+      <Post post={post} />
+      <Post post={post} />
+      <Post post={post} />
+      <Post post={post} />
     </Grid>
   );
 }
