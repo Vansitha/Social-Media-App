@@ -16,13 +16,7 @@ export default function Main() {
   useEffect(() => {
     getPosts();
   }, []);
-  const post = {
-    id: "fdfdfd",
-    title: "This is the title",
-    description: "This is the post description",
-    username: "Vansitha",
-  };
-
+  
   return (
     <Grid
       container
@@ -34,16 +28,6 @@ export default function Main() {
       {postsList?.map((post, index) => {
         return <Post post={post} key={index} />;
       })}
-      <Post post={post} />
-      <Post post={post} />
-      <Post post={post} />
-      <Post post={post} />
-      <Post post={post} />
-      <Post post={post} />
-      <Post post={post} />
-      <Post post={post} />
-      <Post post={post} />
-      <Post post={post} />
     </Grid>
   );
 }
